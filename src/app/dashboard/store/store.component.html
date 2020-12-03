@@ -1,0 +1,19 @@
+
+<app-navbar></app-navbar>
+
+<div class="content">
+    <div class="row">
+        <div class="col-12" *ngFor="let store of allStore">
+            <div class="row card">
+                
+                <div class="card-body">
+                    <h4 class="card-title">{{store.name}}</h4>
+                    <p class="card-text" > {{ store.content  }}</p>
+                    <a class="btn btn-info col-12" routerLink="/store/{{ store._id }}/products">
+                        Ver productos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
