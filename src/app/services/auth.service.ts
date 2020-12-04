@@ -20,6 +20,8 @@ export class AuthService {
         if(res){
           //Guardar token
           this.saveToken(res.data.token,res.data.expiresIn);
+          this.saveUser(res.client.id,res.client.nickname);
+          console.log('register');
         }
       }
     ));
