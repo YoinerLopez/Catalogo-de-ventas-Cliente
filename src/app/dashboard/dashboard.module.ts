@@ -11,16 +11,18 @@ import { StoreComponent } from './store/store.component';
 import { StoreService } from '../services/store.service';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingCarService } from '../services/shopping-car.service';
+import { AccountComponent } from './account/account.component';
+import { AuthService } from '../services/auth.service';
 
 
 @NgModule({
-  declarations: [NavbarComponent, ProductListComponent, ProductDetailsComponent, StoreComponent, ShoppingCartComponent],
+  declarations: [NavbarComponent, ProductListComponent, ProductDetailsComponent, StoreComponent, ShoppingCartComponent, AccountComponent],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     DashboardRoutingModule
   ],
-  providers:[ProductService, StoreService,ShoppingCarService],
+  providers:[ProductService, StoreService,ShoppingCarService,AuthService],
 })
 export class DashboardModule { }

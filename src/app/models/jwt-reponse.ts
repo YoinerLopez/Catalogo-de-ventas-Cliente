@@ -12,5 +12,5 @@ export interface JwtReponseI {
         token: string,
         expiresIn: string
     }
-    
+    status: string
 }

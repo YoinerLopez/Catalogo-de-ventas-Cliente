@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
   }
   onLogin(form):void{
     this.authService.login(form.value).subscribe(res =>{
-      console.log(res);
       this.router.navigateByUrl('/home');
+    },(error)=>{
+      alert('Verifica tu información');
     })
   }
 }
