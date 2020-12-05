@@ -1,18 +1,17 @@
-<div class="card" style="width:40%">
-
-    <div class="card-body">
-        <form #frmlogin="ngForm" (ngSubmit)="onLogin(frmlogin)">
-          
-                <div class="form-group">
-                    <label for="email">Ingresa correo</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com" ngModel required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required>
-                </div>
-            
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <form class="box" #frmlogin="ngForm" (ngSubmit)="onLogin(frmlogin)">
+          <h1>Iniciar Sesion</h1>
+          <p class="text-muted">Por favor ingrese su Correo y Contraseña</p>
+          <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com" ngModel required>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required>
+          <input type="submit" name="" value="Iniciar Sesion" href="#">
+        </form>
+      </div>
     </div>
   </div>
+</div>
+
