@@ -1,0 +1,56 @@
+header{
+  position: relative;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 10px;
+  background: rgb(49, 49, 49);
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgb(0, 0, 0,0.2);
+}
+
+.logo{
+  color: white;
+  height: 60px;
+  font-size: 36px;
+  line-height: 60px;
+  padding: 0 20px;
+  text-align: center;
+  box-sizing: border-box;
+  float: left;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+nav{
+  float: right;
+}
+
+.clearfix{
+  clear: both;
+}
+
+nav ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li{
+  list-style: none;
+}
+
+nav ul li a{
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li a.active,
+nav ul li a:hover{
+  background-color: rgb(56, 105, 63);
+  color: white;
+  transition: 0.5s;
+}
