@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<div class="p-4" *ngIf="account">
+    <div class="row">
+        <div *ngIf="nickname" class="col-6 text-center">
+            {{ nickname }}
+        </div>
+        <div class="col-6 text-center">
+            Tus deuda monetaria es {{ account.debt }}
+        </div>
+    </div>
+</div>
