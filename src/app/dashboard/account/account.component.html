@@ -9,4 +9,24 @@
             Tus deuda monetaria es {{ account.debt }}
         </div>
     </div>
+    <div class="row">
+        <div *ngIf="cambiar" class="card col-12">
+            <form (ngSubmit)="putPassword(new,last)">
+                <label for="uno"> Nueva contraseña</label>
+                
+                <input name="uno" id="unos" type="password" #last>
+                <label for="dos"> Contraseña anterior</label>
+                <input name="dos" id="dos" type="password" #new>    
+                <button class="btn btn-success" >Cambiar Contraseña</button>
+            </form>
+            <form (ngSubmit)="cerrar()">
+                <button class="btn btn-info" >Cancelar</button>
+            </form>
+        </div>
+        <div *ngIf="!cambiar">
+            <form (ngSubmit)="abrir()">
+                <button class="btn btn-info" >Cambiar Contraseña</button>
+            </form>
+        </div>
+    </div>
 </div>

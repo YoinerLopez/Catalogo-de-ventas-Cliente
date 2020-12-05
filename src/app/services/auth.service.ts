@@ -77,4 +77,19 @@ export class AuthService {
     return this.httpClient.get<AccountI>(this.AUTH_SERVER+'account/'+id,{headers});
         
   }
+  getUser(id):Observable<UserI>{
+    const headers = new HttpHeaders({
+      'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
+    });
+    return this.httpClient.get<UserI>(this.AUTH_SERVER+'clients/'+id,{headers});
+  }
+  putPassword(id:string,passlast:string,passnew:string){
+
+    const headers = new HttpHeaders({
+      'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
+    });
+    return this.httpClient.put(this.AUTH_SERVER+'clients/'+id+'/password',{'lastpassword':passlast,
+    'password':passnew
+    });
+  }
 }
