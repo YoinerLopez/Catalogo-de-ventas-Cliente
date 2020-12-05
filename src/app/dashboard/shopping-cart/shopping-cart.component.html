@@ -1,65 +1,62 @@
 <app-navbar></app-navbar>
 <div>
   <div class="p-4" *ngIf="closeResult">
-    <div class="row">
-      <div class="p-4 text-right col-6">
-        <h3>Tus productos seleccionados</h3>
-      </div>
-      <div class="p-4 text-right col-6">
-        <div class="row">
-          <form (ngSubmit)="cancelShopping()">
-            <button class="btn btn-info">Cancelar Compra</button>
-          </form>
-          <form (ngSubmit)="saveShopping()">
-            <button class="btn btn-info">Confirmar Compra</button>
-          </form>
+    <div class="containerr">
+      <div class="row">
+        <div class="p-4 text-right col-6">
+          <h3>Tus productos seleccionados</h3>
+        </div>
+        <div class="p-4 text-right col-6">
+          <div class="row">
+            <form (ngSubmit)="cancelShopping()">
+              <button class="btn vermas--btn">Cancelar Compra</button>
+            </form>
+            <form>
+              <button style="visibility: hidden;" class="btn btn-info"></button>
+            </form>
+            <form (ngSubmit)="saveShopping()">
+              <button class="btn vermas--btn">Confirmar Compra</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="p-4 table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Opcines</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of products; let i= index">
-            <th scope="row"> {{ i + 1 }} </th>
-            <td><img class="img" src="{{ product.urlphoto }}"
-                width="100px"></td>
-            <td>{{ product.name }}</td>
-            <td>
-              <div class="row">
-                <form (ngSubmit)="edit(id,cantidad,pass)">
-                  <input id="prodId" name="prodId" type="hidden" value="{{ cantidades[i] }}" #pass>
-                  <input type="number" value="{{ cantidades[i] }}" #cantidad>
-                  <input id="prodId" name="prodId" type="hidden" value="{{
-                    product._id }}" #id>
-                  <button class="btn btn-success">Editar</button>
+    <div class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-1" style="color: white;">#</div>
+          <div class="col col-2" style="color: white;">Imagen</div>
+          <div class="col col-3" style="color: white;">Producto</div>
+          <div class="col col-4" style="color: white;">Cantidad</div>
+          <div class="col col-5" style="color: white;">Opciones</div>
+        </li>
+        <li class="table-row" *ngFor="let product of products; let i= index">
+          <div class="col col-1" data-label="#">{{ i + 1 }}</div>
+          <div class="col col-2" data-label="Imagen"><img class="img" src="{{ product.urlphoto }}"
+            width="70px" height="50px"></div>
+          <div class="col col-3" data-label="Producto">{{ product.name }}</div>
 
-                </form>
-              </div>
-            </td>
-            <td>
-
-              <form (ngSubmit)="deleteProduct(id)">
-                <input id="prodId" name="prodId" type="hidden" value="{{
-                  product._id }}" #id>
-                <button class="btn btn-danger col-12">Eliminar</button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
+          <div class="col col-4" data-label="Cantidad">
+            <form (ngSubmit)="edit(id,cantidad,pass)">
+              <input id="prodId" name="prodId" type="hidden" value="{{ cantidades[i] }}" #pass>
+              <input type="number" value="{{ cantidades[i] }}" #cantidad>
+              <input id="prodId" name="prodId" type="hidden" value="{{
+                product._id }}" #id>
+                <button class="btn btn-success" style="visibility: hidden;"></button>
+              <button class="btn btn-success">Editar</button>
+            </form>
+        </div>
+          <div class="col col-5" data-label="Opciones"><form (ngSubmit)="deleteProduct(id)">
+            <input id="prodId" name="prodId" type="hidden" value="{{
+              product._id }}" #id>
+            <button class="btn btn-danger col-12">Eliminar</button>
+          </form></div>
+        </li>
+      </ul>
     </div>
   </div>
+
   <div class="p-4 text-center text-danger" *ngIf="!closeResult">
     <div class="card">
       <div class="card-body">
@@ -70,8 +67,9 @@
 
     </div>
     <div class="p-4">
-      <a class="btn btn-info" routerLink="/home">Ver productos</a>
-      <a class="btn btn-info" routerLink="/store">Ver Tiendas</a>
+      <a class="btn vermas--btn" routerLink="/home">Ver productos</a>
+      <a class="btn vermas--btn" style="visibility: hidden;"></a>
+      <a class="btn vermas--btn" routerLink="/store">Ver Tiendas</a>
     </div>
   </div>
 

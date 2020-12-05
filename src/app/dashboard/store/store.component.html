@@ -6,8 +6,8 @@
         <div class="col-4" *ngFor="let store of allStore">
             <div class="row">
               <div class="card card-1">
-                <h3>{{store.name}}</h3>
-                <p>{{ store.content  }} .</p>
+                <h3 style="color: white;">{{store.name}}</h3>
+                <p style="color: white;">{{ store.content  }} .</p>
                 <a class="btn vermas--btn" routerLink="/store/{{ store._id }}/products">
                   Ver productos
                 </a>
