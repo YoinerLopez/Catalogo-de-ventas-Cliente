@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { ProductI } from '../../../models/product';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ShoppingCarService } from 'src/app/services/shopping-car.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -12,7 +13,7 @@ export class ProductListComponent implements OnInit {
   products: ProductI[];
   store=null;
   infStore=null;
-  constructor(private productService: ProductService,private route: ActivatedRoute, private router:Router) { }
+  constructor(private productService: ProductService,private shoppingCar: ShoppingCarService,private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.store= this.route.snapshot.paramMap.get('id');
@@ -46,5 +47,17 @@ export class ProductListComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+  //product: ProductI
+  addProduct(id:HTMLInputElement):void{
+
+    let opc=this.shoppingCar.addProduct(id.value,1);
+    if(opc){
+      console.log(id.value);
+      alert("Se agrego con exito");
+    }else{
+      alert("Ya lo tienes en tu carrito de compras entra para modificar la cantidad");
+    }
+    
   }
 }

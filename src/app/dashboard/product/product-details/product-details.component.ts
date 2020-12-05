@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
+import { ShoppingCarService } from 'src/app/services/shopping-car.service';
 import { ProductI } from '../../../models/product';
 @Component({
   selector: 'app-product-details',
@@ -16,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,private shoppingCar: ShoppingCarService) { }
 
   ngOnInit(): void {
     this.message = '';
@@ -50,5 +51,15 @@ export class ProductDetailsComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+  addProduct(id:HTMLInputElement):void{
+
+    let opc=this.shoppingCar.addProduct(id.value,1);
+    if(opc){
+      console.log(id.value);
+      alert("Se agrego con exito");
+    }else{
+      alert("Ya lo tienes en tu carrito de compras entra para modificar la cantidad");
+    }
   }
 }

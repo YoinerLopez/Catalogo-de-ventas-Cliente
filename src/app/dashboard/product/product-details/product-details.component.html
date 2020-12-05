@@ -12,13 +12,15 @@
                         <h4 class="card-title">{{product.name}} <i *ngIf="store"><a class="card-text"> {{ store.name }} </a></i></h4>
                         <h5 class="card-text">Precio actual {{ getPrice(product) }}<i class="text-danger col-4">{{ product.discount  }}%</i></h5>
                         <p class="card-text">Precio anterior {{ product.price }} </p>
-                        
-                        <a class="btn btn-info col-4" routerLink="/products/{{ product._id }}">
-                            Agregar al carrito
-                        </a>
-                        <a class="btn btn-dark col-4" routerLink="/home">
-                            Volver
-                        </a>
+                        <div class="row">
+                            <form (ngSubmit)="addProduct(id)">
+                                <input id="prodId" name="prodId" type="hidden" value="{{ product._id }}" #id>
+                                <button class="btn btn-success">Añadir al carrito</button>
+                            </form>
+                            <a class="btn btn-dark col-3" routerLink="/home">
+                                Volver
+                            </a>
+                        </div>
                 </div>
                 <div>
                     <h4>Descripción</h4>

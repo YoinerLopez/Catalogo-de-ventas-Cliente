@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+<div>
+  <div class="p-4" *ngIf="closeResult">
+    <div class="row">
+      <div class="p-4 text-right col-6">
+        <h3>Tus productos seleccionados</h3>
+      </div>
+      <div class="p-4 text-right col-6">
+        <div class="row">
+          <form (ngSubmit)="cancelShopping()">
+            <button class="btn btn-info">Cancelar Compra</button>
+          </form>
+          <form (ngSubmit)="saveShopping()">
+            <button class="btn btn-info">Confirmar Compra</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Opcines</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; let i= index">
+            <th scope="row"> {{ i + 1 }} </th>
+            <td><img class="img" src="{{ product.urlphoto }}"
+                width="100px"></td>
+            <td>{{ product.name }}</td>
+            <td>
+              <div class="row">
+                <form (ngSubmit)="edit(id,cantidad,pass)">
+                  <input id="prodId" name="prodId" type="hidden" value="{{ cantidades[i] }}" #pass>
+                  <input type="number" value="{{ cantidades[i] }}" #cantidad>
+                  <input id="prodId" name="prodId" type="hidden" value="{{
+                    product._id }}" #id>
+                  <button class="btn btn-success">Editar</button>
+
+                </form>
+              </div>
+            </td>
+            <td>
+
+              <form (ngSubmit)="deleteProduct(id)">
+                <input id="prodId" name="prodId" type="hidden" value="{{
+                  product._id }}" #id>
+                <button class="btn btn-danger col-12">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <div class="p-4 text-center text-danger" *ngIf="!closeResult">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Selecciona un producto</h4>
+        <p class="card-text"> No tienes productos seleccionados</p>
+
+      </div>
+
+    </div>
+    <div class="p-4">
+      <a class="btn btn-info" routerLink="/home">Ver productos</a>
+      <a class="btn btn-info" routerLink="/store">Ver Tiendas</a>
+    </div>
+  </div>
+
+</div>

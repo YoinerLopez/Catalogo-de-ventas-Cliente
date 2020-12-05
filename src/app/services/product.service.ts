@@ -4,6 +4,7 @@ import { JwtReponseProduct } from '../models/jwt-reponse-product';
 import { tap } from 'rxjs/operators';
 import {Observable, BehaviorSubject } from 'rxjs';
 import { ProductI } from '../models/product';
+import { ShoppingI } from '../models/shopping';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,11 +26,12 @@ export class ProductService {
       }
     ));
   } 
-  getProduct(id): Observable<any> {
+  getProduct(id): Observable<ProductI> {
     const headers = new HttpHeaders({
       'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
     });
-    return this.httpClient.get(this.PRODUCT_SERVER+'product/'+id,{headers});
+    return this.httpClient.get<ProductI>(this.PRODUCT_SERVER+'product/'+id,{headers});
+    
   }
   getStore(id): Observable<any> {
     const headers = new HttpHeaders({
