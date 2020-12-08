@@ -24,7 +24,6 @@ export class ShoppingCartComponent implements OnInit {
 
   private ShoopingCar(){
     this.car=this.carServices.getShopping();
-    console.log(this.car);
     this.productos=  this.car.idproducts;
     this.cantidades= this.car.quantities;
     this.products=[];
@@ -34,7 +33,6 @@ export class ShoppingCartComponent implements OnInit {
         data => {
           
           this.products.push(data);
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -46,7 +44,6 @@ export class ShoppingCartComponent implements OnInit {
     }else{
       this.closeResult=null;
     }
-    console.log(this.productos);
   }
   edit(id:HTMLInputElement,cant:HTMLInputElement,pass:HTMLInputElement){
     if(Number(cant.value)<1){
@@ -62,29 +59,27 @@ export class ShoppingCartComponent implements OnInit {
         this.ShoopingCar();
       }
     }
-    console.log(id.value);
   }
   deleteProduct(id:HTMLInputElement){
     this.carServices.removeProduct(id.value);
     this.ShoopingCar();
-    console.log('eliminar '+id.value);
   }
   cancelShopping(){
     this.carServices.removeCar();
     this.ShoopingCar();
-    console.log('cancelar compra');
   }
   saveShopping(){
+    
     if(localStorage.getItem('USER_ID')!='undefined'){
-      console.log('el usuario es');
-      console.log(localStorage.getItem('USER_ID'));
       this.carServices.saveShopping().subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-          
+        (res: any)=>{
+          if(res._id!=undefined){
+            console.log(res._id);
+            this.cancelShopping();
+          }
+          else{
+            alert('Ocurrio un error '+res);
+          }
         });
    }else{
      console.log('Usuario no identificado');

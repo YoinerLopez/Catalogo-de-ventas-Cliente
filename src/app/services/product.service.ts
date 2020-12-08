@@ -39,4 +39,10 @@ export class ProductService {
     });
     return this.httpClient.get(this.PRODUCT_SERVER+'store/'+id,{headers});
   }
+  getProductsStore(id):Observable<ProductI[]>{
+    const headers = new HttpHeaders({
+      'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
+    });
+    return this.httpClient.get<ProductI[]>(this.PRODUCT_SERVER+'products/'+id,{headers});
+  }
 }

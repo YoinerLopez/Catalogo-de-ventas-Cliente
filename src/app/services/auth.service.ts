@@ -90,6 +90,6 @@ export class AuthService {
     });
     return this.httpClient.put(this.AUTH_SERVER+'clients/'+id+'/password',{'lastpassword':passlast,
     'password':passnew
-    });
+    },{headers});
   }
 }

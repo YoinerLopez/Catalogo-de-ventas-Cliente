@@ -17,10 +17,11 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store= this.route.snapshot.paramMap.get('id');
-    this.getProducts();
-    if(!(this.store===null)){
+    if(this.store!=null){
       this.getStore(this.store);
-    }
+      this.getProductStore(this.store);
+    }else
+      this.getProducts();
   }
   getProducts():void{
 
@@ -47,6 +48,14 @@ export class ProductListComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+  getProductStore(id){
+    this.productService.getProductsStore(id).subscribe(res=>{
+       res.forEach(product => {
+        console.log('Imprimiendo'+product.name+' '+ product.price);
+       });
+       this.products=res;
+    });
   }
   //product: ProductI
   addProduct(id:HTMLInputElement):void{

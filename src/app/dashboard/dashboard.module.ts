@@ -13,10 +13,12 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingCarService } from '../services/shopping-car.service';
 import { AccountComponent } from './account/account.component';
 import { AuthService } from '../services/auth.service';
+import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.component';
+import { ShoppingDetailsComponent } from './shopping/shopping-details/shopping-details.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, ProductListComponent, ProductDetailsComponent, StoreComponent, ShoppingCartComponent, AccountComponent],
+  declarations: [NavbarComponent, ProductListComponent, ProductDetailsComponent, StoreComponent, ShoppingCartComponent, AccountComponent, ShoppingListComponent, ShoppingDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,

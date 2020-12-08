@@ -10,6 +10,7 @@ import { tap } from 'rxjs/operators';
 })
 export class ShoppingCarService {
   shopping: ShoppingI;
+  meshopping: ShoppingI[];
   SHOPPING_SERVER: string = 'https://univerch-catalogo-ventas.herokuapp.com/';
   authSubject = new BehaviorSubject(false);
   constructor(private httpClient: HttpClient) {
@@ -41,7 +42,9 @@ export class ShoppingCarService {
   }
   setProduct(id:string,cantidad:number):boolean{
     var i = this.shopping.idproducts.indexOf( id );
+    
     if ( i !== -1 ) {
+      this.shopping.idproducts[i]=id;
       this.shopping.quantities[i]=cantidad;
       this.actualizar();
       return true;
@@ -93,12 +96,15 @@ export class ShoppingCarService {
     return this.httpClient.post<any>(this.SHOPPING_SERVER+'shopping',
     shopping,{headers}).pipe(tap(
       (res: any)=>{
-        if(res){
-          console.log(res);
-        }
         this.removeCar();
       }
     ));
   }
-  
+  getMeShopping(id):Observable<ShoppingI[]>{
+    const shopping= this.getShopping();
+    const headers = new HttpHeaders({
+      'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
+    });
+    return this.httpClient.get<ShoppingI[]>(this.SHOPPING_SERVER+'shopping'+id,{headers});
+  }  
 }

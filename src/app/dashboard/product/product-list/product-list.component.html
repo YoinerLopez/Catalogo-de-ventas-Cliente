@@ -1,6 +1,9 @@
 <app-navbar></app-navbar>
 <div class="p-4" *ngIf="infStore">
     <h3> {{ infStore.name }}</h3>
+    <div *ngIf="products.length==0">
+      No cuenta con ningun producto por el momento
+    </div>
 </div>
 <div class="containerr">
     <div class="row mb-2">

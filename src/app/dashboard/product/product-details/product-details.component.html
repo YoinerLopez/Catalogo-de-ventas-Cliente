@@ -25,15 +25,15 @@
           {{ product.content }}
         </ul>
       </div>
-      <div class="row">
+      <div class="">
         <form (ngSubmit)="addProduct(id)">
           <input id="prodId" name="prodId" type="hidden" value="{{ product._id }}" #id>
           <button class="btn btn-success buy--btn">Añadir al carrito</button>
         </form>
-        <a class="btn btn-dark col-3 volver--btn" style="visibility: hidden;"> algo</a>
-        <a class="btn btn-dark col-3 volver--btn" routerLink="/home">
-            Volver
-        </a>
+        <a class="btn volver--btn col-1" style="visibility: hidden;"> algo</a>
+        <form (ngSubmit)="backClicked()">
+          <button class="btn btn-dark col-4 volver--btn">Volver</button>
+        </form>
       </div>
     </div>
   </section>

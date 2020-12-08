@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { ShoppingCarService } from 'src/app/services/shopping-car.service';
 import { ProductI } from '../../../models/product';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -17,6 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
+    private location: Location,
     private router: Router,private shoppingCar: ShoppingCarService) { }
 
   ngOnInit(): void {
@@ -62,4 +64,7 @@ export class ProductDetailsComponent implements OnInit {
       alert("Ya lo tienes en tu carrito de compras entra para modificar la cantidad");
     }
   }
+  backClicked() {
+    this.location.back();
+}
 }
