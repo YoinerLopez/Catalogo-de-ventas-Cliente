@@ -85,7 +85,7 @@ export class ShoppingCarService {
     }
   }
   removeCar(){
-    this.shopping = {'idclient': '','idproducts':[],'quantities':[],'resulted':0,'status':'Solicitada'};
+    this.shopping = {'idclient': '','idproducts':[],'quantities':[],'resulted':0,'status':'Solicitada','createdAt':'2020/12/8'};
     this.actualizar();
   }
   saveShopping():Observable<any>{
@@ -105,6 +105,13 @@ export class ShoppingCarService {
     const headers = new HttpHeaders({
       'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
     });
-    return this.httpClient.get<ShoppingI[]>(this.SHOPPING_SERVER+'shopping'+id,{headers});
+    return this.httpClient.get<ShoppingI[]>(this.SHOPPING_SERVER+'shopping/'+id,{headers});
+  }
+  getShoppingId(id):Observable<ShoppingI>{
+    const shopping= this.getShopping();
+    const headers = new HttpHeaders({
+      'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
+    });
+    return this.httpClient.get<ShoppingI>(this.SHOPPING_SERVER+'shopping/user/'+id,{headers});
   }  
 }

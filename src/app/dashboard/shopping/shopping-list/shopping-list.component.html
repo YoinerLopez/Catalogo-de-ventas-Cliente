@@ -1,2 +1,33 @@
 <app-navbar></app-navbar>
-<p>shopping-list works!</p>
+<div class="p-4" *ngIf="!shopping">
+    <p>
+        No cuenta con ninguna compra registrada por el momento
+    </p>
+</div>
+<div class="p-4" *ngIf="shopping">
+    <div class="containerr">
+        <div class="row mb-2">
+            <table class="table table-striped">
+                <thead>
+                    <th>Compra</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Total</th>
+                    <th> Opciones </th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let sh of shopping; let i = index">
+                        <td>{{ i }}</td>
+                        
+                        <td>{{ getDate(sh.createdAt) }}</td>
+                        <td>{{ sh.status }}</td>
+                        <td>{{ sh.resulted }}</td>
+                        <td>
+                            <button class="btn" ><a class="btn btn-info" routerLink="/shopping/{{ sh._id }}" >Ver</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

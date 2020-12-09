@@ -1,2 +1,38 @@
 <app-navbar></app-navbar>
-<p>shopping-details works!</p>
+<div class="container">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Productos</th>
+                <th>Total</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{ getDate() }}
+                    </td>
+                    <td>
+                        {{ shopping.status }}
+                    </td>
+                    <td>
+                        <tr *ngFor="let product of products; let i= index">
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.price }}</td>
+                            <td></td>
+                            <button class="btn"><a class="btn btn-info" routerLink="/products/{{ product._id }}" >Ver producto</a></button>
+                            
+                        </tr>
+                    </td>
+                    <td>
+                        {{ shopping.resulted }}
+                    </td>
+
+                </tr>
+                
+
+            </tbody>
+        </table>
+    </div>
+</div>
