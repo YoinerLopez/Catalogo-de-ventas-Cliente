@@ -5,13 +5,12 @@
       No cuenta con ningun producto por el momento
     </div>
 </div>
-<div class="p-4">
-  <div class="col-4">
+<div class="p-4 col-6" style="margin-left: auto; margin-right: auto;">
     <form (ngSubmit)="search(product)">
-      <input class="input col-8" id="prodId" name="prodId" type="text" #product>
-      <button class="btn btn-success col-4">Buscar</button>
+      <input class="input col-9" id="prodId" name="prodId" type="text" #product>
+      <button class="col-1" style="visibility: hidden;"></button>
+      <button class="btn btn-success col-2">Buscar</button>
     </form>
-  </div>
 </div>
 <div class="containerr">
   <div class="row mb-2">

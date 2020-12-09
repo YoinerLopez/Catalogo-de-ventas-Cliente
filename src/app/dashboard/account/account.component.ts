@@ -50,11 +50,11 @@ export class AccountComponent implements OnInit {
         console.log(error.message);
       });
     this.cambiar=null;
-  } 
+  }
   abrir(){
     this.cambiar=1;
-  } 
+  }
   cerrar(){
     this.cambiar=null;
-  } 
+  }
 }

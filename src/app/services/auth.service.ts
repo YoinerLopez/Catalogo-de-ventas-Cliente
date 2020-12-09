@@ -43,6 +43,13 @@ export class AuthService {
       }
     ));
   }
+
+  loggedIn(): boolean
+  {
+    console.log(localStorage.getItem('ACCESS_TOKEN'));
+    return !!localStorage.getItem('ACCESS_TOKEN');
+  }
+
   logout(): void{
     this.token= '';
     localStorage.removeItem("ACCESS_TOKEN");
@@ -75,7 +82,7 @@ export class AuthService {
       'ACCESS_TOKEN': localStorage.getItem('ACCESS_TOKEN')
     });
     return this.httpClient.get<AccountI>(this.AUTH_SERVER+'account/'+id,{headers});
-        
+
   }
   getUser(id):Observable<UserI>{
     const headers = new HttpHeaders({

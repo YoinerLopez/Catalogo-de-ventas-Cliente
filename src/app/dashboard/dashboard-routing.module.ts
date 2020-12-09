@@ -7,15 +7,16 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AccountComponent } from './account/account.component';
 import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.component';
 import { ShoppingDetailsComponent } from './shopping/shopping-details/shopping-details.component';
+import { AuthGuard } from '../guards/auth.guard';
 const routes: Routes = [
-  {path: 'home', component: ProductListComponent},
-  {path: 'products/:id', component: ProductDetailsComponent},
-  {path: 'store/:id/products', component: ProductListComponent}, 
-  {path: 'store', component: StoreComponent},
-  {path: 'car-shopping', component: ShoppingCartComponent},
-  {path: 'account', component: AccountComponent},
-  {path: 'shopping', component: ShoppingListComponent},
-  {path: 'shopping/:id', component: ShoppingDetailsComponent}
+  {path: 'home', component: ProductListComponent, canActivate:[AuthGuard]},
+  {path: 'products/:id', component: ProductDetailsComponent, canActivate:[AuthGuard]},
+  {path: 'store/:id/products', component: ProductListComponent, canActivate:[AuthGuard]},
+  {path: 'store', component: StoreComponent, canActivate:[AuthGuard]},
+  {path: 'car-shopping', component: ShoppingCartComponent, canActivate:[AuthGuard]},
+  {path: 'account', component: AccountComponent, canActivate:[AuthGuard]},
+  {path: 'shopping', component: ShoppingListComponent, canActivate:[AuthGuard]},
+  {path: 'shopping/:id', component: ShoppingDetailsComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

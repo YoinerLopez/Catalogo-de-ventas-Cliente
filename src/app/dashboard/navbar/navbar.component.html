@@ -8,7 +8,13 @@
       <li><a routerLink="/store"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Tiendas</a></li>
       <li><a routerLink="/shopping"><i class="fa fa-money" aria-hidden="true"></i> Mis compras</a></li>
       <li><a routerLink="/car-shopping"><i class="fa fa-cart-plus" aria-hidden="true"></i> Mi Carro</a></li>
-      <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
+      <li>
+        <form (ngSubmit)="onLogOut()">
+          <a >
+            <i class="fa fa-sign-out" aria-hidden="true"> </i>
+             <input type="submit" value="Salir" style="border: none; background: none; color: white;"></a>
+        </form>
+      </li>
 
     </ul>
   </nav>
