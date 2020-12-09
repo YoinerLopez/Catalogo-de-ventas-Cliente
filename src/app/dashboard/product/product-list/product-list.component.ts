@@ -11,12 +11,14 @@ import { ShoppingCarService } from 'src/app/services/shopping-car.service';
 })
 export class ProductListComponent implements OnInit {
   products: ProductI[];
+  productssearch:ProductI[];
   store=null;
   infStore=null;
   constructor(private productService: ProductService,private shoppingCar: ShoppingCarService,private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.store= this.route.snapshot.paramMap.get('id');
+    this.productssearch=[];
     if(this.store!=null){
       this.getStore(this.store);
       this.getProductStore(this.store);
@@ -24,13 +26,7 @@ export class ProductListComponent implements OnInit {
       this.getProducts();
   }
   getProducts():void{
-
-    //this.products = 
-    console.log('iniciando');
     this.productService.getProducts().subscribe(res=>{
-       res.forEach(product => {
-        console.log('Imprimiendo'+product.name+' '+ product.price);
-       });
        this.products=res;
     });
     
@@ -43,7 +39,6 @@ export class ProductListComponent implements OnInit {
       .subscribe(
         data => {
           this.infStore = data;
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -51,9 +46,7 @@ export class ProductListComponent implements OnInit {
   }
   getProductStore(id){
     this.productService.getProductsStore(id).subscribe(res=>{
-       res.forEach(product => {
-        console.log('Imprimiendo'+product.name+' '+ product.price);
-       });
+
        this.products=res;
     });
   }
@@ -62,11 +55,30 @@ export class ProductListComponent implements OnInit {
 
     let opc=this.shoppingCar.addProduct(id.value,1);
     if(opc){
-      console.log(id.value);
       alert("Se agrego con exito");
     }else{
       alert("Ya lo tienes en tu carrito de compras entra para modificar la cantidad");
     }
     
   }
+  search(productsearch:HTMLInputElement){
+    this.productssearch=[];
+    if(productsearch.value!=''){
+      this.products.forEach(product => {
+        if(this.searchSubString(product.name,productsearch.value)){
+          this.productssearch.push(product);
+        }
+      });
+    }
+  }
+  searchSubString(stringold, stringnew) {
+    // Reemplaza cadenaVieja por cadenaNueva en cadenaCompleta
+    
+       for (var i = 0; i < stringold.length; i++) {
+         if(i+stringnew.length>stringold.length){
+           return false;
+         }else if(stringold.substr(i,stringnew.length)===stringnew)
+          return true;  
+       }
+    }
 }
